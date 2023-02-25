@@ -1,0 +1,29 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Generates a web page with a card per employee",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertTaylor94/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobertTaylor94/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/RobertTaylor94/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  }
+}
