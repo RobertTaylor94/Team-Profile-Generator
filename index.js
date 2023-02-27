@@ -47,11 +47,65 @@ function init() {
 }
 
 function addEngineer() {
+    inquirer 
+        .prompt([
+            {
+                type: `input`,
+                message: `Enter the engineers name.`,
+                name: `name`
+            },
+            {
+                type: `input`,
+                message: `Enter the team members ID.`,
+                name: `id`
+            },
+            {
+                type: `input`,
+                message: `Enter the team members email.`,
+                name: `email`
+            },
+            {
+                type: `input`,
+                message: `Enter the engineers GitHub username.`,
+                name: `github`
+            }
+        ])
+        .then((answers) => {
+            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            employees.push(engineer);
+            options();
+        })
 
-}
 
 function addIntern() {
-
+    inquirer 
+        .prompt([
+            {
+                type: `input`,
+                message: `Enter the interns name.`,
+                name: `name`
+            },
+            {
+                type: `input`,
+                message: `Enter the interns ID.`,
+                name: `id`
+            },
+            {
+                type: `input`,
+                message: `Enter the interns email.`,
+                name: `email`
+            },
+            {
+                type: `input`,
+                message: `Enter the interns school.`,
+                name: `school`
+            }
+        ])
+        .then((answers) => {
+            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+            employees.push(intern);
+            options();
+        })
 }
 
 function options() {
@@ -66,10 +120,10 @@ function options() {
         ])
         .then((answer) => {
             if (answer.option === `Add new engineer`) {
-                console.log(`Added new engineer`);
-                options()
+                addEngineer();
+                options();
             } else if (answer.option === `Add new intern`) {
-                console.log(`Added new intern`);
+                addIntern();
                 options();
             } else {
                 console.log("done");
