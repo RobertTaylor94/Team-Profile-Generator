@@ -54,6 +54,27 @@ function addIntern() {
 
 }
 
-
+function options() {
+    inquirer
+        .prompt([
+            {
+                type: `list`,
+                message: `Next:`,
+                choices: [`Add new engineer`, `Add new intern`, `Finish building the team`],
+                name: `option`
+            }
+        ])
+        .then((answer) => {
+            if (answer.option === `Add new engineer`) {
+                console.log(`Added new engineer`);
+                options()
+            } else if (answer.option === `Add new intern`) {
+                console.log(`Added new intern`);
+                options();
+            } else {
+                console.log("done");
+            }
+        })
+}
 
 init();
