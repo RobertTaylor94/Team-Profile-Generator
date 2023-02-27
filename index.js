@@ -12,7 +12,6 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-// let addEmployee = true;
 let employees = [];
 
 function init() {
@@ -75,7 +74,7 @@ function addEngineer() {
             employees.push(engineer);
             options();
         })
-
+    }
 
 function addIntern() {
     inquirer 
@@ -121,12 +120,13 @@ function options() {
         .then((answer) => {
             if (answer.option === `Add new engineer`) {
                 addEngineer();
-                options();
             } else if (answer.option === `Add new intern`) {
                 addIntern();
-                options();
             } else {
-                console.log("done");
+                const html = render(employees);
+                fs.writeFile(outputPath, html, (err) => {
+                    if (err) {console.error(err);}
+                });
             }
         })
 }
