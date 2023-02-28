@@ -15,6 +15,7 @@ const render = require("./src/page-template.js");
 let employees = [];
 
 function init() {
+    //get user input for manager employee
     inquirer
         .prompt([
             {
@@ -39,13 +40,16 @@ function init() {
             }
         ])
         .then((answers) => {
+            //add manager object employees array
             const teamManager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
             employees.push(teamManager);
+            //get user option for adding new employee
             options()
         })
 }
 
 function addEngineer() {
+    //get user input for new engineer
     inquirer 
         .prompt([
             {
@@ -70,13 +74,16 @@ function addEngineer() {
             }
         ])
         .then((answers) => {
+            //add engineer to employee array
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
             employees.push(engineer);
+            //get user option for adding new employee
             options();
         })
     }
 
 function addIntern() {
+    //get user input for new intern
     inquirer 
         .prompt([
             {
@@ -101,13 +108,16 @@ function addIntern() {
             }
         ])
         .then((answers) => {
+            //push intern object to employees array
             const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
             employees.push(intern);
+            //get user option for adding new employee
             options();
         })
 }
 
 function options() {
+    //ask user if they want to add a new employee or finish building the page
     inquirer
         .prompt([
             {
@@ -123,6 +133,7 @@ function options() {
             } else if (answer.option === `Add new intern`) {
                 addIntern();
             } else {
+                //uses render function to build html page
                 const html = render(employees);
                 fs.writeFile(outputPath, html, (err) => {
                     if (err) {console.error(err);}
