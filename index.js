@@ -2,6 +2,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
+const validator = require("email-validator");
 const path = require("path");
 const fs = require("fs");
 
@@ -31,7 +32,8 @@ function init() {
             {
                 type: `input`,
                 message: `Enter the team managers email.`,
-                name: `managerEmail`
+                name: `managerEmail`,
+                validate: validateEmail
             },
             {
                 type: `input`,
@@ -65,7 +67,8 @@ function addEngineer() {
             {
                 type: `input`,
                 message: `Enter the team members email.`,
-                name: `email`
+                name: `email`,
+                validate: validateEmail
             },
             {
                 type: `input`,
@@ -99,7 +102,8 @@ function addIntern() {
             {
                 type: `input`,
                 message: `Enter the interns email.`,
-                name: `email`
+                name: `email`,
+                validate: validateEmail
             },
             {
                 type: `input`,
@@ -140,6 +144,15 @@ function options() {
                 });
             }
         })
+}
+
+function validateEmail(email) {
+    //using the email-validator package, if email is valid move on to the next prompt
+    if (validator.validate(email)) {
+        return true;
+    } else {
+        console.log("Invalid email");
+    };
 }
 
 init();
